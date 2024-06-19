@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Progress Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background-color: #ddd;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none; /* Initially hide the progress bar */
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- Your page content goes here -->
+    <div style="height: 2000px;">
+        <!-- Just for demonstration purposes, replace with your actual content -->
+        Scroll down to see the progress bar in action!
+    </div>
+
+    <script>
+        // When the user scrolls the page, execute myFunction 
+        window.onscroll = function() {myFunction()};
+
+        function myFunction() {
+            // Calculate the scroll progress
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+
+            // Update the width of the progress bar with the scrolled amount
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            // Show the progress bar when the user starts scrolling
+            if (scrolled > 0) {
+                document.querySelector('.progress-container').style.display = 'block';
+            } else {
+                document.querySelector('.progress-container').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

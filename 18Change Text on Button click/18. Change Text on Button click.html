@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Heading Text</title>
+</head>
+<body>
+    <h1 id="heading">The most affordable learning platform</h1>
+    <button id="toggleButton">Toggle Text</button>
+
+    <script>
+        // Get references to the heading and button elements
+        const heading = document.getElementById('heading');
+        const button = document.getElementById('toggleButton');
+
+        // Function to toggle the heading text
+        const toggleHeadingText = () => {
+            if (heading.textContent === "The most affordable learning platform") {
+                heading.textContent = "PW Skills";
+            } else {
+                heading.textContent = "The most affordable learning platform";
+            }
+        };
+
+        // Add event listener to the button to toggle the heading text on click
+        button.addEventListener('click', toggleHeadingText);
+    </script>
+</body>
+</html>

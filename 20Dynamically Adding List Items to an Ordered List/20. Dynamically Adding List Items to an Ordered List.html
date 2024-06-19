@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamically Add List Items</title>
+</head>
+<body>
+    <h2>What you'll learn</h2>
+    <ol id="learnList">
+        <!-- List items will be dynamically added here -->
+    </ol>
+    <button id="addItemButton">Add Next Item</button>
+    <p id="message"></p>
+
+    <script>
+        // Pre-existing array of list items
+        const listItems = [
+            "Introduction to Programming",
+            "HTML and CSS Basics",
+            "JavaScript Fundamentals",
+            "Advanced JavaScript",
+            "Web Development Tools",
+            "Project Building",
+            "Responsive Design",
+            "Backend Development",
+            "APIs and Integration",
+            "Final Project"
+        ];
+
+        // Get references to the ordered list, button, and message paragraph
+        const learnList = document.getElementById('learnList');
+        const addItemButton = document.getElementById('addItemButton');
+        const messageParagraph = document.getElementById('message');
+
+        // Counter to keep track of the next item to add
+        let itemIndex = 0;
+
+        // Function to add the next item to the list
+        const addListItem = () => {
+            if (itemIndex < listItems.length) {
+                // Create a new list item element
+                const li = document.createElement('li');
+                // Set the text of the list item
+                li.textContent = listItems[itemIndex];
+                // Add the list item to the ordered list
+                learnList.appendChild(li);
+                // Increment the item index
+                itemIndex++;
+            } else {
+                // If no items are left, display a message
+                messageParagraph.textContent = 'All items have been added.';
+                // Disable the button
+                addItemButton.disabled = true;
+            }
+        };
+
+        // Add event listener to the button to handle the click event
+        addItemButton.addEventListener('click', addListItem);
+    </script>
+</body>
+</html>

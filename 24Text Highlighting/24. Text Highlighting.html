@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Long Words</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p id="paragraph">
+        This paragraph contains some long words such as documentation, understanding, and internationalization.
+        We need to highlight these long words using JavaScript and the DOM.
+    </p>
+    
+    <script>
+        // Get the paragraph element
+        const paragraph = document.getElementById('paragraph');
+
+        // Function to highlight long words
+        function highlightLongWords() {
+            // Get the text content of the paragraph
+            const text = paragraph.textContent;
+
+            // Split the text into words
+            const words = text.split(' ');
+
+            // Map over the words and wrap long words in a span with the highlight class
+            const highlightedText = words.map(word => {
+                return word.length > 8 ? `<span class="highlight">${word}</span>` : word;
+            }).join(' ');
+
+            // Set the innerHTML of the paragraph to the new highlighted text
+            paragraph.innerHTML = highlightedText;
+        }
+
+        // Call the function to highlight long words
+        highlightLongWords();
+    </script>
+</body>
+</html>

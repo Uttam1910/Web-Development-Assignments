@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move the Image</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            border: 2px solid #ccc;
+            background-color: white;
+        }
+        #image {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="image" src="https://via.placeholder.com/50" alt="Movable Image">
+    </div>
+    
+    <script>
+        // Get the image element
+        const image = document.getElementById('image');
+        const container = document.getElementById('container');
+        
+        // Initial position of the image
+        let posX = container.offsetWidth / 2 - image.offsetWidth / 2;
+        let posY = container.offsetHeight / 2 - image.offsetHeight / 2;
+
+        // Function to update the position of the image
+        function updatePosition() {
+            image.style.left = `${posX}px`;
+            image.style.top = `${posY}px`;
+        }
+
+        // Event listener for keydown events
+        document.addEventListener('keydown', function(event) {
+            const step = 10; // Number of pixels to move per key press
+
+            switch (event.key) {
+                case 'ArrowUp':
+                    if (posY - step >= 0) posY -= step;
+                    break;
+                case 'ArrowDown':
+                    if (posY + step <= container.offsetHeight - image.offsetHeight) posY += step;
+                    break;
+                case 'ArrowLeft':
+                    if (posX - step >= 0) posX -= step;
+                    break;
+                case 'ArrowRight':
+                    if (posX + step <= container.offsetWidth - image.offsetWidth) posX += step;
+                    break;
+            }
+            updatePosition();
+        });
+
+        // Initialize the position
+        updatePosition();
+    </script>
+</body>
+</html>
